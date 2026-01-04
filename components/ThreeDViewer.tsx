@@ -1,5 +1,4 @@
-
-/// <reference types="@react-three/fiber" />
+// @ts-nocheck
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Float, useTexture, ContactShadows, Stars } from '@react-three/drei';

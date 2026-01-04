@@ -64,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       whileHover={{ y: -5, transition: { duration: 0.2 } }}
       className={`group relative block bg-surface rounded-2xl overflow-hidden border border-border hover:border-copper/50 transition-colors duration-300 ${spanClass}`}
     >
-      <Link to={`/product/${product.id}`} className="block h-full flex flex-col">
+      <Link to={`/product/${product.id}`} className="block h-full flex flex-col" aria-label={`View details for ${product.title}`}>
         {/* Image Container */}
         <div className={`relative w-full ${product.isFeatured ? 'h-64 md:h-96' : 'h-64'} overflow-hidden shrink-0`}>
           
@@ -135,7 +135,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   ? 'bg-white text-slate-900 border-white'
                   : 'bg-black/40 text-silver border-white/10 hover:bg-black/60 hover:text-white'
               }`}
-              title="View QR Code"
+              title={showQr ? "Close QR Code" : "View QR Code"}
+              aria-label={showQr ? "Close QR Code" : "View QR Code"}
             >
               {showQr ? <X className="w-4 h-4" /> : <QrCode className="w-4 h-4" />}
             </button>
@@ -148,6 +149,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   : 'bg-black/40 text-silver border-white/10 hover:bg-black/60 hover:text-white'
               }`}
               title={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+              aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
             >
               <Heart className={`w-4 h-4 ${isWishlisted ? 'fill-current' : ''}`} />
             </button>
@@ -160,6 +162,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                   : 'bg-black/40 text-silver border-white/10 hover:bg-black/60 hover:text-white'
               }`}
               title={isSelected ? "Remove from Compare" : "Add to Compare"}
+              aria-label={isSelected ? "Remove from Compare" : "Add to Compare"}
             >
               {isSelected ? <Check className="w-4 h-4" /> : <Scale className="w-4 h-4" />}
             </button>

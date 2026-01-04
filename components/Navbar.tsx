@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group" aria-label="Resca Home">
             <div className="w-10 h-10 bg-gradient-to-br from-copper to-orange-700 rounded-lg flex items-center justify-center shadow-lg shadow-orange-900/50 group-hover:shadow-orange-600/50 transition-all duration-300">
               <ChefHat className="text-white w-6 h-6" />
             </div>
@@ -38,6 +38,7 @@ const Navbar: React.FC = () => {
                 type="text"
                 className="block w-full pl-10 pr-3 py-2.5 bg-surface border border-border rounded-xl leading-5 text-gray-300 placeholder-gray-500 focus:outline-none focus:bg-slate-900 focus:ring-1 focus:ring-copper focus:border-copper sm:text-sm transition-all duration-300"
                 placeholder={t('common.search_placeholder')}
+                aria-label="Search equipment"
               />
             </div>
           </div>
@@ -50,6 +51,10 @@ const Navbar: React.FC = () => {
               <button 
                 onClick={() => setShowLangMenu(!showLangMenu)}
                 className="flex items-center gap-1 text-silver hover:text-white transition-colors"
+                title="Change Language"
+                aria-label="Change Language"
+                aria-haspopup="true"
+                aria-expanded={showLangMenu}
               >
                 <Globe className="w-4 h-4" />
                 <span className="uppercase text-xs font-bold">{language}</span>
@@ -107,24 +112,42 @@ const Navbar: React.FC = () => {
             {/* User/Cart Icons */}
             <div className="hidden md:flex items-center gap-4">
               {/* Wishlist Icon */}
-              <button className="relative text-silver hover:text-red-500 transition-colors">
+              <button 
+                className="relative text-silver hover:text-red-500 transition-colors"
+                title="My Wishlist"
+                aria-label="View Wishlist"
+              >
                 <Heart className={`w-5 h-5 ${wishlistIds.length > 0 ? 'fill-red-500 text-red-500' : ''}`} />
                 {wishlistIds.length > 0 && (
                    <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                 )}
               </button>
 
-              <Link to="/dashboard" className={`hover:text-white transition-colors ${location.pathname === '/dashboard' ? 'text-copper' : 'text-silver'}`} title={t('nav.dashboard')}>
+              <Link 
+                to="/dashboard" 
+                className={`hover:text-white transition-colors ${location.pathname === '/dashboard' ? 'text-copper' : 'text-silver'}`} 
+                title={t('nav.dashboard')}
+                aria-label="User Dashboard"
+              >
                 <User className="w-5 h-5" />
               </Link>
-              <button className="relative text-silver hover:text-copper transition-colors">
+              <button 
+                className="relative text-silver hover:text-copper transition-colors"
+                title="Shopping Bag"
+                aria-label="View Shopping Bag"
+              >
                 <ShoppingBag className="w-5 h-5" />
                 <span className="absolute -top-1 -right-1 w-2 h-2 bg-copper rounded-full"></span>
               </button>
             </div>
             
             {/* Mobile Menu */}
-            <button className="md:hidden text-silver">
+            <button 
+              className="md:hidden text-silver"
+              title="Menu"
+              aria-label="Toggle Menu"
+            >
+              <span className="sr-only">Open main menu</span>
               <Menu className="w-6 h-6" />
             </button>
           </div>
